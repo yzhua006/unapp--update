@@ -2,43 +2,25 @@
 	<view class="wrap">
 		<view class="popup-bg" :class="{'popup-show' : popup_show}" :style="getHeight">
 			<view class="update-wrap">
-				<view class="update-content">
-					<view class="update-con-top">
-						<!-- 发现新版本 -->
-						<text class="update-top-title">发现新版本</text>
-						<text class="update-top-version">V{{update_info.version}}</text>
-					</view>
-					<text class="uodate-content" v-if="downstatus < 1">更新内容:{{update_info.note}}</text>
-					<text class="current-version" v-if="downstatus < 1">当前版本:V{{version}}</text>
-
-					<view class="update-btn" v-if="downstatus < 1">
-						<view class="btn-item" @click="closeUpdate">
-							<!-- 残忍拒绝 -->
-							<text class="item-text ">残忍拒绝</text>
-						</view>
-						<view class="btn-item" @click="nowUpdate">
-							<!-- 立即升级 -->
-							<text class="item-text text-bule">立即升级</text>
-						</view>
-					</view>
+				<image src="./images/img.png" class="top-img"></image>
+				<view class="content">
+					<text class="title">发现新版本V{{update_info.version}}</text>
+					<!-- 升级描述 -->
+					<view class="title-sub" v-html="update_info.note"></view>
+					<!-- 升级按钮 -->
+					<button class="btn" v-if="downstatus < 1" @click="nowUpdate()">立即升级</button>
 					<!-- 下载进度 -->
 					<view class="sche-wrap" v-else>
 						<!-- 更新包下载中 -->
-						<text class="sche-wrap-text">更新包下载中...</text>
 						<view class="sche-bg">
-							<view class="sche-bg-jindu" :style="lengthWidth">
-								<view class="sche-bg-round">
-									<text class="sche-bg-round-text" v-if="schedule">{{schedule}}%</text>
-									<text class="sche-bg-round-text"
-										v-else>{{(downloadedSize/1024/1024 ).toFixed(2)}}M</text>
-								</view>
-							</view>
+							<view class="sche-bg-jindu" :style="lengthWidth"></view>
 						</view>
+						<text
+							class="down-text">下载进度:{{(downSize/1024/1024 ).toFixed(2)}}M/{{(fileSize/1024/1024).toFixed(2)}}M</text>
 					</view>
 				</view>
-				<view class="updata-bg-img"></view>
-				<view class="updata-bg-color"></view>
 			</view>
+			<image src="./images/close.png" class="close-ioc" @click="closeUpdate()"></image>
 		</view>
 	</view>
 </template>
@@ -60,7 +42,7 @@
 		},
 		data() {
 			return {
-				popup_show: false, //弹窗是否显示
+				popup_show: true, //弹窗是否显示
 				platform: "", //ios or android
 				version: "1.0.0", //当前软件版本
 				need_update: false, // 是否更新
@@ -71,8 +53,8 @@
 					version: '', //最新版本
 					note: '', //升级说明
 				},
-				schedule: 0, //下载进度宽度
-				downloadedSize: 0, //下载大小
+				fileSize: 0, //文件大小
+				downSize: 0, //已下载大小
 				viewObj: null, //原生遮罩view
 			};
 		},
@@ -82,17 +64,24 @@
 		computed: {
 			// 下载进度计算
 			lengthWidth: function() {
+				let w = this.downSize / this.fileSize * 100;
+				if (!w) {
+					w = 0
+				} else {
+					w = w.toFixed(2)
+				}
 				return {
-					width: vm.schedule * 480 / 100 + "rpx"
+					width: w + "%" //return 宽度半分比
 				}
 			},
 			getHeight: function() {
 				let bottom = 0;
-				if (vm.tabbar) {
+				if (this.tabbar) {
 					bottom = 50;
 				}
 				return {
-					"bottom": bottom + 'px'
+					"bottom": bottom + 'px',
+					"height": "auto"
 				}
 			}
 		},
@@ -129,12 +118,12 @@
 						let data = [{
 							os: 'android',
 							version: '1.0.1', //最新版本
-							note: '我是安卓升级说明',
+							note: '我是安卓升级说明<br>我是安卓升级说明我是安卓升级说明',
 							download_url: 'https://dldir1.qq.com/weixin/android/weixin802android1860_arm64.apk', //下载地址 (微信测试)
 						}, {
 							os: 'ios',
 							version: '1.0.1', //最新版本
-							note: '我是IOS升级说明', //下载地址
+							note: '我是IOS升级说明</br>升级说明', //下载地址
 							download_url: 'https://weixin.qq.com/cgi-bin/download302?check=false&uin=&stype=&promote=&fr=&lang=zh_CN&ADTAG=&url=ios', //微信测试
 						}];
 
@@ -185,16 +174,13 @@
 							"exit");
 				} else {
 					vm.popup_show = false; //关闭升级弹窗
-					vm.viewObj.hide() //隐藏原生遮罩
+					if (vm.viewObj) vm.viewObj.hide() //隐藏原生遮罩
 				}
 			},
 			// 立即更新
 			nowUpdate() {
-				if (vm.downing) {
-					return false //如果正在下载就停止操作
-				} else {
-					vm.downing = true; //状态改变 正在下载中
-				}
+				if (vm.downing) return false; //如果正在下载就停止操作
+				vm.downing = true; //状态改变 正在下载中
 
 				if (/\.apk$/.test(vm.update_info.download_url)) {
 					// 如果是apk地址
@@ -224,12 +210,10 @@
 						vm.downstatus = task.state;
 						switch (task.state) {
 							case 3: // 已接收到数据  
-								vm.downloadedSize = task.downloadedSize;
-								let totalSize = 0;
+								vm.downSize = task.downloadedSize;
 								if (task.totalSize) {
-									totalSize = task.totalSize //服务器须返回正确的content-length才会有长度
+									vm.fileSize = task.totalSize; //服务器须返回正确的content-length才会有长度
 								}
-								vm.schedule = parseInt(100 * task.downloadedSize / totalSize);
 								break;
 							case 4:
 								vm.installWgt(task.filename); // 安装wgt包  
@@ -292,10 +276,10 @@
 <style lang="scss" scoped>
 	.popup-bg {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		position: fixed;
-		z-index: -9999;
 		opacity: 0;
 		top: 0;
 		left: 0;
@@ -304,6 +288,8 @@
 		width: 750rpx;
 		background-color: rgba(0, 0, 0, .6);
 		transition: opacity 300ms;
+		height: 0;
+		overflow: hidden;
 	}
 
 	.popup-show {
@@ -313,98 +299,60 @@
 
 	.update-wrap {
 		width: 580rpx;
-		border-radius: 10rpx;
+		border-radius: 18rpx;
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
+		background-color: #ffffff;
+		padding: 170rpx 30rpx 0;
 
-		.updata-bg-img {
+		.top-img {
 			position: absolute;
-			top: 0vw;
-			left: 0px;
-			width: 580rpx;
-			height: 440rpx;
-			background: url(images/update-img.png) no-repeat;
-			background-size: 100% 100%;
-			z-index: 1;
+			left: 0;
+			width: 100%;
+			height: 256rpx;
+			top: -128rpx;
 		}
 
-		.updata-bg-color {
-			position: absolute;
-			width: 580rpx;
-			top: 10vw;
-			height: calc(100% - 10vw);
-			background-color: #ffffff;
-			z-index: 0;
-		}
-
-		.update-content {
-			position: relative;
-			z-index: 2;
+		.content {
 			display: flex;
 			flex-direction: column;
-		}
-
-		.update-con-top {
-			padding: 70rpx 50rpx;
-		}
-
-		.update-btn {
-			height: 80rpx;
-			display: flex;
 			align-items: center;
-			border-top: 1px solid #e7e7e7;
-			margin-top: 20rpx;
+			padding-bottom: 40rpx;
 
-			.btn-item {
+			.title {
+				font-size: 32rpx;
+				font-weight: bold;
+				color: #6526f3;
+			}
+
+			.title-sub {
+				text-align: center;
+				font-size: 24rpx;
+				color: #666666;
+				padding: 30rpx 0;
+			}
+
+			.btn {
+				width: 460rpx;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				flex: 1;
-
-				.item-text {
-					text-align: center;
-					font-size: 28rpx;
-					color: #666;
-				}
-
-				.text-bule {
-					color: #045FCF;
-				}
-			}
-
-			.btn-item:first-child {
-				border-right: 1px solid #e7e7e7
+				color: #ffffff;
+				font-size: 30rpx;
+				height: 80rpx;
+				line-height: 80rpx;
+				border-radius: 100px;
+				background-color: #6526f3;
+				margin-top: 20rpx;
 			}
 		}
+	}
 
-		.update-top-title {
-			color: #fff;
-			font-size: 34rpx;
-			font-weight: bold;
-		}
-
-		.update-top-version {
-			color: #fff;
-			font-size: 28rpx;
-			margin-top: 10rpx;
-		}
-
-		.uodate-content {
-			color: #333;
-			font-size: 30rpx;
-			padding: 0px 50rpx;
-			margin-top: 120rpx;
-		}
-
-		.current-version {
-			text-align: center;
-			margin-top: 20rpx;
-			font-size: 24rpx;
-			color: #666;
-			margin-bottom: 16rpx;
-		}
+	.close-ioc {
+		width: 70rpx;
+		height: 70rpx;
+		margin-top: 30rpx;
 	}
 
 	.sche-wrap {
@@ -412,7 +360,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-end;
-		padding: 160rpx 50rpx 40rpx;
+		padding: 10rpx 50rpx 0;
 
 		.sche-wrap-text {
 			font-size: 24rpx;
@@ -422,45 +370,29 @@
 
 		.sche-bg {
 			position: relative;
-			background-color: #ccc;
-			height: 20rpx;
+			background-color: #cccccc;
+			height: 30rpx;
 			border-radius: 100px;
 			width: 480rpx;
 			display: flex;
 			align-items: center;
-			margin-bottom: 30rpx;
-		}
 
-		.sche-bg-jindu {
-			position: absolute;
-			left: 0;
-			top: 0;
-			height: 20rpx;
-			background-color: #5775e7;
-			border-radius: 100px;
-
-			.sche-bg-round {
+			.sche-bg-jindu {
 				position: absolute;
-				left: 100%;
-				height: 24rpx;
-				width: 24rpx;
-				background-color: #fff;
-				border-color: #fff;
-				border-style: solid;
-				border-width: 10rpx;
+				left: 0;
+				top: 0;
+				height: 30rpx;
+				min-width: 40rpx;
 				border-radius: 100px;
-				transform: translateX(-20rpx) translateY(-10rpx);
-				box-shadow: 0 0 4px #eaeaea;
-
-				.sche-bg-round-text {
-					position: relative;
-					top: 24rpx;
-					font-size: 24rpx;
-					text-align: center;
-					color: #5775e7;
-				}
+				background: url(images/round.png) #5775e7 center right 4rpx no-repeat;
+				background-size: 26rpx 26rpx;
 			}
 		}
 
+		.down-text {
+			font-size: 24rpx;
+			color: #5674e5;
+			margin-top: 16rpx;
+		}
 	}
 </style>
