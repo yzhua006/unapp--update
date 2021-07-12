@@ -2,7 +2,7 @@
 	<view class="content">
 		<image class="logo" mode="widthFix" src="/static/logo.png"></image>
 		<!-- 更新组件 force 是否强制更新    tabbar：页面是否有原生tabbar组件-->
-		<app-update ref="app_update" :force="false" :tabbar="false"></app-update>
+		<app-update ref="app_update" :force="true" :tabbar="false"></app-update>
 	</view>
 </template>
 

@@ -354,111 +354,131 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-uni-view",
-    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
-    [
-      _c(
+  return _vm._$g(0, "i")
+    ? _c(
         "v-uni-view",
-        {
-          staticClass: _vm._$g(1, "sc"),
-          class: _vm._$g(1, "c"),
-          style: _vm._$g(1, "s"),
-          attrs: { _i: 1 }
-        },
+        { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+            {
+              staticClass: _vm._$g(1, "sc"),
+              style: _vm._$g(1, "s"),
+              attrs: { _i: 1 }
+            },
             [
-              _c("v-uni-image", {
-                staticClass: _vm._$g(3, "sc"),
-                attrs: { src: _vm._$g(3, "a-src"), _i: 3 }
-              }),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
+                {
+                  staticClass: _vm._$g(2, "sc"),
+                  class: _vm._$g(2, "c"),
+                  attrs: { _i: 2 }
+                },
                 [
                   _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
-                    [_vm._v("发现新版本V" + _vm._$g(5, "t0-0"))]
-                  ),
-                  _c("v-uni-view", {
-                    staticClass: _vm._$g(6, "sc"),
-                    attrs: { _i: 6 },
-                    domProps: { innerHTML: _vm._s(_vm._$g(6, "v-html")) }
-                  }),
-                  _vm._$g(7, "i")
-                    ? _c(
-                        "v-uni-button",
-                        {
-                          staticClass: _vm._$g(7, "sc"),
-                          attrs: { _i: 7 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [_vm._v("立即升级")]
-                      )
-                    : _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
+                    [
+                      _c("v-uni-image", {
+                        staticClass: _vm._$g(4, "sc"),
+                        attrs: { src: _vm._$g(4, "a-src"), _i: 4 }
+                      }),
+                      _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
+                        { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
                         [
                           _c(
-                            "v-uni-view",
-                            { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-                            [
-                              _c("v-uni-view", {
-                                staticClass: _vm._$g(10, "sc"),
-                                style: _vm._$g(10, "s"),
-                                attrs: { _i: 10 }
-                              })
-                            ],
-                            1
-                          ),
-                          _c(
                             "v-uni-text",
-                            {
-                              staticClass: _vm._$g(11, "sc"),
-                              attrs: { _i: 11 }
-                            },
-                            [
-                              _vm._v(
-                                "下载进度:" +
-                                  _vm._$g(11, "t0-0") +
-                                  "M/" +
-                                  _vm._$g(11, "t0-1") +
-                                  "M"
+                            { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
+                            [_vm._v("发现新版本V" + _vm._$g(6, "t0-0"))]
+                          ),
+                          _c("v-uni-view", {
+                            staticClass: _vm._$g(7, "sc"),
+                            attrs: { _i: 7 },
+                            domProps: {
+                              innerHTML: _vm._s(_vm._$g(7, "v-html"))
+                            }
+                          }),
+                          _vm._$g(8, "i")
+                            ? _c(
+                                "v-uni-button",
+                                {
+                                  staticClass: _vm._$g(8, "sc"),
+                                  attrs: { _i: 8 },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.$handleViewEvent($event)
+                                    }
+                                  }
+                                },
+                                [_vm._v("立即升级")]
                               )
-                            ]
-                          )
+                            : _c(
+                                "v-uni-view",
+                                {
+                                  staticClass: _vm._$g(9, "sc"),
+                                  attrs: { _i: 9 }
+                                },
+                                [
+                                  _c(
+                                    "v-uni-view",
+                                    {
+                                      staticClass: _vm._$g(10, "sc"),
+                                      attrs: { _i: 10 }
+                                    },
+                                    [
+                                      _c("v-uni-view", {
+                                        staticClass: _vm._$g(11, "sc"),
+                                        style: _vm._$g(11, "s"),
+                                        attrs: { _i: 11 }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _c(
+                                    "v-uni-text",
+                                    {
+                                      staticClass: _vm._$g(12, "sc"),
+                                      attrs: { _i: 12 }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "下载进度:" +
+                                          _vm._$g(12, "t0-0") +
+                                          "M/" +
+                                          _vm._$g(12, "t0-1") +
+                                          "M"
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
                         ],
                         1
                       )
+                    ],
+                    1
+                  ),
+                  _c("v-uni-image", {
+                    staticClass: _vm._$g(13, "sc"),
+                    attrs: { src: _vm._$g(13, "a-src"), _i: 13 },
+                    on: {
+                      click: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      }
+                    }
+                  })
                 ],
                 1
               )
             ],
             1
-          ),
-          _c("v-uni-image", {
-            staticClass: _vm._$g(12, "sc"),
-            attrs: { src: _vm._$g(12, "a-src"), _i: 12 },
-            on: {
-              click: function($event) {
-                return _vm.$handleViewEvent($event)
-              }
-            }
-          })
+          )
         ],
         1
       )
-    ],
-    1
-  )
+    : _vm._e()
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -551,7 +571,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ./images/round.png *
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.popup-bg[data-v-3f2da3cc] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  position: fixed;\r\n  opacity: 0;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  width: 750rpx;\r\n  background-color: rgba(0, 0, 0, 0.6);\r\n  -webkit-transition: opacity 300ms;\r\n  transition: opacity 300ms;\r\n  height: 0;\r\n  overflow: hidden;\n}\n.popup-show[data-v-3f2da3cc] {\r\n  z-index: 99;\r\n  opacity: 1;\n}\n.update-wrap[data-v-3f2da3cc] {\r\n  width: 580rpx;\r\n  border-radius: 18rpx;\r\n  position: relative;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  background-color: #ffffff;\r\n  padding: 170rpx 30rpx 0;\n}\n.update-wrap .top-img[data-v-3f2da3cc] {\r\n  position: absolute;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 256rpx;\r\n  top: -128rpx;\n}\n.update-wrap .content[data-v-3f2da3cc] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  padding-bottom: 40rpx;\n}\n.update-wrap .content .title[data-v-3f2da3cc] {\r\n  font-size: 32rpx;\r\n  font-weight: bold;\r\n  color: #6526f3;\n}\n.update-wrap .content .title-sub[data-v-3f2da3cc] {\r\n  text-align: center;\r\n  font-size: 24rpx;\r\n  color: #666666;\r\n  padding: 30rpx 0;\n}\n.update-wrap .content .btn[data-v-3f2da3cc] {\r\n  width: 460rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  color: #ffffff;\r\n  font-size: 30rpx;\r\n  height: 80rpx;\r\n  line-height: 80rpx;\r\n  border-radius: 100px;\r\n  background-color: #6526f3;\r\n  margin-top: 20rpx;\n}\n.close-ioc[data-v-3f2da3cc] {\r\n  width: 70rpx;\r\n  height: 70rpx;\r\n  margin-top: 30rpx;\n}\n.sche-wrap[data-v-3f2da3cc] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;\r\n  padding: 10rpx 50rpx 0;\n}\n.sche-wrap .sche-wrap-text[data-v-3f2da3cc] {\r\n  font-size: 24rpx;\r\n  color: #666;\r\n  margin-bottom: 20rpx;\n}\n.sche-wrap .sche-bg[data-v-3f2da3cc] {\r\n  position: relative;\r\n  background-color: #cccccc;\r\n  height: 30rpx;\r\n  border-radius: 100px;\r\n  width: 480rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.sche-wrap .sche-bg .sche-bg-jindu[data-v-3f2da3cc] {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  height: 30rpx;\r\n  min-width: 40rpx;\r\n  border-radius: 100px;\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") #5775e7 center right 4rpx no-repeat;\r\n  background-size: 26rpx 26rpx;\n}\n.sche-wrap .down-text[data-v-3f2da3cc] {\r\n  font-size: 24rpx;\r\n  color: #5674e5;\r\n  margin-top: 16rpx;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.popup-bg[data-v-3f2da3cc] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0rpx;\r\n  right: 0;\r\n  bottom: 0;\r\n  width: 750rpx;\r\n  background-color: rgba(0, 0, 0, 0.6);\n}\n.popup-content[data-v-3f2da3cc] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.popup-content-show[data-v-3f2da3cc] {\r\n  -webkit-animation: mymove-data-v-3f2da3cc 500ms;\r\n          animation: mymove-data-v-3f2da3cc 500ms;\r\n  -webkit-transform: scale(1);\r\n          transform: scale(1);\n}\n@-webkit-keyframes mymove-data-v-3f2da3cc {\n0% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\r\n    /*开始为原始大小*/\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n@keyframes mymove-data-v-3f2da3cc {\n0% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\r\n    /*开始为原始大小*/\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n.update-wrap[data-v-3f2da3cc] {\r\n  width: 580rpx;\r\n  border-radius: 18rpx;\r\n  position: relative;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  background-color: #ffffff;\r\n  padding: 170rpx 30rpx 0;\n}\n.update-wrap .top-img[data-v-3f2da3cc] {\r\n  position: absolute;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 256rpx;\r\n  top: -128rpx;\n}\n.update-wrap .content[data-v-3f2da3cc] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  padding-bottom: 40rpx;\n}\n.update-wrap .content .title[data-v-3f2da3cc] {\r\n  font-size: 32rpx;\r\n  font-weight: bold;\r\n  color: #6526f3;\n}\n.update-wrap .content .title-sub[data-v-3f2da3cc] {\r\n  text-align: center;\r\n  font-size: 24rpx;\r\n  color: #666666;\r\n  padding: 30rpx 0;\n}\n.update-wrap .content .btn[data-v-3f2da3cc] {\r\n  width: 460rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  color: #ffffff;\r\n  font-size: 30rpx;\r\n  height: 80rpx;\r\n  line-height: 80rpx;\r\n  border-radius: 100px;\r\n  background-color: #6526f3;\r\n  margin-top: 20rpx;\n}\n.close-ioc[data-v-3f2da3cc] {\r\n  width: 70rpx;\r\n  height: 70rpx;\r\n  margin-top: 30rpx;\n}\n.sche-wrap[data-v-3f2da3cc] {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;\r\n  padding: 10rpx 50rpx 0;\n}\n.sche-wrap .sche-wrap-text[data-v-3f2da3cc] {\r\n  font-size: 24rpx;\r\n  color: #666;\r\n  margin-bottom: 20rpx;\n}\n.sche-wrap .sche-bg[data-v-3f2da3cc] {\r\n  position: relative;\r\n  background-color: #cccccc;\r\n  height: 30rpx;\r\n  border-radius: 100px;\r\n  width: 480rpx;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.sche-wrap .sche-bg .sche-bg-jindu[data-v-3f2da3cc] {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  height: 30rpx;\r\n  min-width: 40rpx;\r\n  border-radius: 100px;\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") #5775e7 center right 4rpx no-repeat;\r\n  background-size: 26rpx 26rpx;\n}\n.sche-wrap .down-text[data-v-3f2da3cc] {\r\n  font-size: 24rpx;\r\n  color: #5674e5;\r\n  margin-top: 16rpx;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 

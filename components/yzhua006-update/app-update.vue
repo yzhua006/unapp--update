@@ -1,26 +1,29 @@
 <template>
-	<view class="wrap">
-		<view class="popup-bg" :class="{'popup-show' : popup_show}" :style="getHeight">
-			<view class="update-wrap">
-				<image src="./images/img.png" class="top-img"></image>
-				<view class="content">
-					<text class="title">发现新版本V{{update_info.version}}</text>
-					<!-- 升级描述 -->
-					<view class="title-sub" v-html="update_info.note"></view>
-					<!-- 升级按钮 -->
-					<button class="btn" v-if="downstatus < 1" @click="nowUpdate()">立即升级</button>
-					<!-- 下载进度 -->
-					<view class="sche-wrap" v-else>
-						<!-- 更新包下载中 -->
-						<view class="sche-bg">
-							<view class="sche-bg-jindu" :style="lengthWidth"></view>
+	<view class="wrap" v-if="popup_show">
+		<view class="popup-bg" :style="getHeight">
+			<view class="popup-content" :class="{'popup-content-show' : popup_show}">
+				<view class="update-wrap">
+					<image src="./images/img.png" class="top-img"></image>
+					<view class="content">
+						<text class="title">发现新版本V{{update_info.version}}</text>
+						<!-- 升级描述 -->
+						<view class="title-sub" v-html="update_info.note"></view>
+						<!-- 升级按钮 -->
+						<button class="btn" v-if="downstatus < 1" @click="nowUpdate()">立即升级</button>
+						<!-- 下载进度 -->
+						<view class="sche-wrap" v-else>
+							<!-- 更新包下载中 -->
+							<view class="sche-bg">
+								<view class="sche-bg-jindu" :style="lengthWidth"></view>
+							</view>
+							<text
+								class="down-text">下载进度:{{(downSize/1024/1024 ).toFixed(2)}}M/{{(fileSize/1024/1024).toFixed(2)}}M</text>
 						</view>
-						<text
-							class="down-text">下载进度:{{(downSize/1024/1024 ).toFixed(2)}}M/{{(fileSize/1024/1024).toFixed(2)}}M</text>
 					</view>
 				</view>
+				<image src="./images/close.png" class="close-ioc" @click="closeUpdate()"></image>
 			</view>
-			<image src="./images/close.png" class="close-ioc" @click="closeUpdate()"></image>
+
 		</view>
 	</view>
 </template>
@@ -280,22 +283,38 @@
 		align-items: center;
 		justify-content: center;
 		position: fixed;
-		opacity: 0;
 		top: 0;
-		left: 0;
+		left: 0rpx;
 		right: 0;
 		bottom: 0;
 		width: 750rpx;
 		background-color: rgba(0, 0, 0, .6);
-		transition: opacity 300ms;
-		height: 0;
-		overflow: hidden;
 	}
 
-	.popup-show {
-		z-index: 99;
-		opacity: 1;
+	.popup-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
+
+	.popup-content-show {
+		animation: mymove 500ms;
+		transform: scale(1);
+	}
+
+	@keyframes mymove {
+		0% {
+			transform: scale(0);
+			/*开始为原始大小*/
+		}
+
+		100% {
+			transform: scale(1);
+		}
+
+	}
+
+
 
 	.update-wrap {
 		width: 580rpx;
@@ -348,6 +367,7 @@
 			}
 		}
 	}
+
 
 	.close-ioc {
 		width: 70rpx;
